@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pantry to Plate — AI Recipe Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <h1>Pantry <span class="accent">to</span> Plate</h1>
+  <p class="tagline">tell me what you have, i will make it into a recipe!!.</p>
+</header>
+
+<main class="layout">
+
+  <section class="panel pantry-panel">
+    <h2>Your pantry</h2>
+
+    <div class="chip-input">
+      <input type="text" id="ingredient-text" placeholder="e.g. tomato, onion, rice">
+      <button class="btn btn-ghost" id="add-ingredient-btn">Add</button>
+    </div>
+
+    <ul class="chip-list" id="chip-list"></ul>
+
+    <div class="field-row">
+      <label>
+        Cuisine
+        <select id="cuisine-select">
+          <option value="any">Any</option>
+          <option value="Indian">Indian</option>
+          <option value="Italian">Italian</option>
+          <option value="Mexican">Mexican</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Mediterranean">Mediterranean</option>
+        </select>
+      </label>
+      <label>
+        Diet
+        <select id="diet-select">
+          <option value="none">No restriction</option>
+          <option value="vegetarian">Vegetarian</option>
+          <option value="vegan">Vegan</option>
+          <option value="gluten-free">Gluten-free</option>
+        </select>
+      </label>
+    </div>
+
+    <button class="btn btn-primary" id="generate-btn">Generate recipe</button>
+  </section>
+
+  <section class="panel recipe-panel">
+    <div class="recipe-card" id="recipe-card">
+      <div class="pin"></div>
+      <p class="empty-state" id="empty-state">Add a few ingredients and press <em>Generate recipe</em> — your recipe card shows up here.</p>
+
+      <div id="recipe-content" hidden>
+        <p class="recipe-note" id="recipe-note" hidden></p>
+        <h2 id="recipe-title"></h2>
+        <p id="recipe-description"></p>
+
+        <div class="recipe-meta">
+          <span><strong id="prep-time"></strong> prep</span>
+          <span><strong id="cook-time"></strong> cook</span>
+          <span><strong id="servings"></strong> servings</span>
+        </div>
+
+        <h3>Ingredients</h3>
+        <ul id="recipe-ingredients"></ul>
+
+        <h3>Method</h3>
+        <ol id="recipe-steps"></ol>
+
+        <h3>Nutrition (estimate)</h3>
+        <ul class="nutrition-list" id="nutrition-list"></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
